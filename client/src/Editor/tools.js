@@ -5,7 +5,6 @@ import List from '@editorjs/list'
 import Warning from '@editorjs/warning'
 import Code from '@editorjs/code'
 import LinkTool from '@editorjs/link'
-import Image from '@editorjs/image'
 import Raw from '@editorjs/raw'
 import Header from '@editorjs/header'
 import Quote from '@editorjs/quote'
@@ -14,6 +13,7 @@ import CheckList from '@editorjs/checklist'
 import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
 import SimpleImage from '@editorjs/simple-image'
+import InlineImage from 'editorjs-inline-image';
 
 export const EDITOR_JS_TOOLS = {
   embed: Embed,
@@ -23,7 +23,19 @@ export const EDITOR_JS_TOOLS = {
   warning: Warning,
   code: Code,
   linkTool: LinkTool,
-  image: Image,
+  image: {
+    class: InlineImage,
+    inlineToolbar: true,
+    config: {
+      embed: {
+        display: true,
+      },
+      unsplash: {
+        appName: 'place-of-thoughts',
+        clientId: 'XD21PylDKH_N4U88q21aJNALEGPDSwlM3eRADxuOkfU'
+      }
+    }
+  },
   raw: Raw,
   header: Header,
   quote: Quote,
