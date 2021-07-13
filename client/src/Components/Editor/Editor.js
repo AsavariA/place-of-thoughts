@@ -6,32 +6,27 @@ import { EDITOR_JS_TOOLS } from './tools';
 const Editor = () => {
     const instanceRef = useRef(null)
     // const edjsParser = editorjsHTML();
-    const [jsonData, setJsonData] = useState({ blocks: [] })
-    const [formData, setFormData] = useState({ name: '', 'title': '', content: {} })
-    const [submitText, setSubmitText] = useState('Save')
+    const [formData, setFormData] = useState({ name: '', 'title': '' })
 
     const handleSave = async (e) => {
         e.preventDefault();
         const savedData = await instanceRef.current.save()
-        if (submitText === 'Save') {
-            setJsonData(savedData)
-            // const html = edjsParser.parse(savedData);
-            setFormData({ ...formData, content: savedData })
-            console.log(formData);
-            setSubmitText('Submit');
+        if (savedData.blocks.length !== 0) {
+            const data = {
+                name: formData.name,
+                tilte: formData.title,
+                content: savedData
+            }
+            console.log(data)
         } else {
-            setJsonData(savedData)
-            // const html = edjsParser.parse(savedData);
-            setFormData({ ...formData, content: savedData })
-            console.log(formData);
+            alert('Your blog cannot be empty!')
         }
     }
     return (
         <>
             <EditorJs
-                inlineToolbar={true}
                 readOnly={false}
-                data={jsonData}
+                data={{ blocks: [] }}
                 tools={EDITOR_JS_TOOLS}
                 placeholder="Start your story here!"
                 instanceRef={(instance) => (instanceRef.current = instance)}
@@ -44,7 +39,7 @@ const Editor = () => {
                 <input required type="text" id="title" name="title" placeholder="Blog Title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
                 <br></br>
                 {/* <button onClick={handleSave}>click</button> */}
-                <input type="submit" value={submitText} />
+                <input type="submit" value="Publish" />
             </form>
         </>
     )

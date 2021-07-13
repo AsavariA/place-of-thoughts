@@ -1,27 +1,28 @@
 import React from 'react';
-import Editor from './Editor/Editor'
-import Navbar from 'responsive-sticky-nav'
-import pot from './POT.png'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Editor from './Components/Editor/Editor'
+import NavBar from './Components/NavBar'
+import Auth from './Components/Auth/Auth'
+import Home from './Components/Home/Home'
 
 function App() {
   return (
-    <div>
-      <Navbar
-        logo={pot}
-        color="black"
-        drawerColor="rgba(0,0,0,0.6)"
-        burgerColor="#fff"
-        drawerHeight="100vh"
-      >
-        <h4 style={{ margin: '2rem 0' }}><a style={{ color: 'white' }} href="/home">Home</a></h4>
-        <h4 style={{ margin: '2rem 0' }}><a style={{ color: 'white' }} href="/about">About</a></h4>
-        <h4 style={{ margin: '2rem 0' }}><a style={{ color: 'white' }} href="/work">Work</a></h4>
-        <h4 style={{ margin: '2rem 0' }}><a style={{ color: 'white' }} href="/contact">Contact</a></h4>
-      </Navbar>
-      <div className="App">
-        <Editor />
-      </div>
-    </div>
+    <Router>
+      <NavBar />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/write">
+          <div className="App">
+            <Editor />
+          </div>
+        </Route>
+        <Route exact path="/auth">
+          <Auth />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
