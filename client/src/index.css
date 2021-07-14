@@ -20,10 +20,6 @@ a{
   text-decoration: none;
 }
 
-.ce-toolbar {
-  background-color: transparent;
-}
-
 .codex-editor__redactor{
   padding: 3rem 0 !important;
 }

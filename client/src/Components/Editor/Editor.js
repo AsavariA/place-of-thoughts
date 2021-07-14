@@ -6,7 +6,7 @@ import { EDITOR_JS_TOOLS } from './tools';
 const Editor = () => {
     const instanceRef = useRef(null)
     // const edjsParser = editorjsHTML();
-    const [formData, setFormData] = useState({ name: '', 'title': '' })
+    const [formData, setFormData] = useState({ description: '', title: '' })
     const user = JSON.parse(localStorage.getItem('profile'));
 
     const handleSave = async (e) => {
@@ -14,7 +14,7 @@ const Editor = () => {
         const savedData = await instanceRef.current.save()
         if (savedData.blocks.length !== 0) {
             const data = {
-                name: formData.name,
+                description: formData.description,
                 tilte: formData.title,
                 content: savedData
             }
@@ -43,11 +43,11 @@ const Editor = () => {
                 instanceRef={(instance) => (instanceRef.current = instance)}
             />
             <form className="form" onSubmit={handleSave}>
-                <label>Name:</label>
-                <input required type="text" id="nname" name="name" placeholder="Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-                <br></br>
                 <label>Blog Title:</label>
                 <input required type="text" id="title" name="title" placeholder="Blog Title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
+                <br></br>
+                <label>Short Description:</label>
+                <input required type="text" id="description" name="description" placeholder="Short Description" value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} />
                 <br></br>
                 {/* <button onClick={handleSave}>click</button> */}
                 <input type="submit" value="Publish" />
