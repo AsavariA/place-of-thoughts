@@ -59,3 +59,30 @@ input:active{
   outline: none;
   border: none;
 }
+
+.auth-buttons{
+  margin: 1.5rem 0;
+  padding: 0.5rem 1rem;
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+
+.editor-signup{
+  height:80vh;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.editor-signup h4 {
+  background-color: lightcoral;
+  padding: 0.5rem 3rem;
+  transition: 200ms ease-in;
+  border: 2px solid white;
+}
+
+.editor-signup h4:hover {
+  background-color: white;
+  border: 2px solid lightcoral;
+}

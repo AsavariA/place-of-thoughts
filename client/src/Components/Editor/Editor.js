@@ -7,6 +7,7 @@ const Editor = () => {
     const instanceRef = useRef(null)
     // const edjsParser = editorjsHTML();
     const [formData, setFormData] = useState({ name: '', 'title': '' })
+    const user = JSON.parse(localStorage.getItem('profile'));
 
     const handleSave = async (e) => {
         e.preventDefault();
@@ -22,6 +23,16 @@ const Editor = () => {
             alert('Your blog cannot be empty!')
         }
     }
+
+    if (!user?.result?.name) {
+        return (
+            <div className="editor-signup">
+                <h2>Sign up to write a story!</h2>
+                <h4 className="auth-buttons"><a style={{ color: 'black' }} href="/auth">Sign Up</a></h4>
+            </div>
+        );
+    }
+
     return (
         <>
             <EditorJs
