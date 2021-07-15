@@ -5,9 +5,9 @@ const blogSchema = mongoose.Schema({
     ownerName: String,
     title: String,
     description: String,
-    content: String
+    content: Map
 })
 
-var BlogModel = mongoose.model('Bizness', blogSchema);
+var BlogModel = mongoose.model('Blog', blogSchema);
 
 export default BlogModel;

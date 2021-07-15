@@ -9,5 +9,8 @@ API.interceptors.request.use((req) => {
     return req;
   });
 
+export const fetchBlogs = () => API.get('/blogs');
+export const createBlog = (newBlog) => API.post('/blogs', newBlog)  
+
 export const signIn = (formData) => API.post('users/signin', formData);
 export const signUp = (formData) => API.post('users/signup', formData);

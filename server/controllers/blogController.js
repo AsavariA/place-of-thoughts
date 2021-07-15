@@ -1,5 +1,5 @@
 import BlogModel from "../models/blogModel.js";
-// import mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 export const getAllBlogs = async (req, res) => {
     try {
@@ -19,6 +19,6 @@ export const createBlog = async (req, res) => {
         console.log('Blog Created!');
     } catch (error) {
         res.status(409).json({message: error.message})
-        console.log('Error creating blog!'); 
+        console.log(error); 
     }
 }

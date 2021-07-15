@@ -1,13 +1,31 @@
 import React, { useRef, useState } from 'react'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { useDispatch } from 'react-redux';
+import { createBlog } from '../../actions/blogAction';
 // import editorjsHTML from "editorjs-html";
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 const Editor = () => {
-    const instanceRef = useRef(null)
+    const instanceRef = useRef(null);
+    const dispatch = useDispatch();
     // const edjsParser = editorjsHTML();
     const [formData, setFormData] = useState({ description: '', title: '' })
     const user = JSON.parse(localStorage.getItem('profile'));
+    const [disableSubmit, setDisableSubmit] = useState(false);
+    const [open, setOpen] = useState(false);
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
 
     const handleSave = async (e) => {
         e.preventDefault();
@@ -19,6 +37,9 @@ const Editor = () => {
                 content: savedData
             }
             console.log(data)
+            dispatch(createBlog({ ...data, ownerName: user?.result?.name }))
+            setOpen(true)
+            setDisableSubmit(true)
         } else {
             alert('Your blog cannot be empty!')
         }
@@ -35,6 +56,11 @@ const Editor = () => {
 
     return (
         <>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
+                    Blog Created!
+                </Alert>
+            </Snackbar>
             <EditorJs
                 readOnly={false}
                 data={{ blocks: [] }}
@@ -50,7 +76,7 @@ const Editor = () => {
                 <input required type="text" id="description" name="description" placeholder="Short Description" value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} />
                 <br></br>
                 {/* <button onClick={handleSave}>click</button> */}
-                <input type="submit" value="Publish" />
+                <input type="submit" value="Publish" disabled={disableSubmit} />
             </form>
         </>
     )
