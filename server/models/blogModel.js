@@ -5,7 +5,15 @@ const blogSchema = mongoose.Schema({
     ownerName: String,
     title: String,
     description: String,
-    content: Map
+    content: Map,
+    createdAt: {
+        type: Date,
+        default: new Date(),
+    },
+    category: {
+        type: String,
+        default: 'other',
+    },
 })
 
 var BlogModel = mongoose.model('Blog', blogSchema);

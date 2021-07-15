@@ -60,6 +60,14 @@ input:active{
   border: none;
 }
 
+select{
+  padding: 1rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: aliceblue;
+}
+
 .auth-buttons{
   margin: 1.5rem 0;
   padding: 0.5rem 1rem;
@@ -107,4 +115,45 @@ input:active{
 
 .MuiCardContent-root {
   padding: 16px 16px 0 16px !important;
+}
+
+.category-image{
+  width: 13rem;
+  height: 100%;
+}
+
+.image-div{
+  width: 35%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.cardcontent{
+  width: 65%
+}
+
+.cardmain{
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 650px){
+  .cardcontent{
+    width: 100%
+  }
+
+  .cardmain{
+    display: block;
+  }
+
+  .category-image{
+    width: 100%;
+    height: auto;
+  }
+
+  .image-div{
+    width: 100%;
+    display: block;
+  }
 }

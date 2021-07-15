@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import EditorJs from 'react-editor-js';
 import { EDITOR_JS_TOOLS } from './tools';
+import { options } from './options'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useDispatch } from 'react-redux';
@@ -15,7 +16,7 @@ const Editor = () => {
     const instanceRef = useRef(null);
     const dispatch = useDispatch();
     // const edjsParser = editorjsHTML();
-    const [formData, setFormData] = useState({ description: '', title: '' })
+    const [formData, setFormData] = useState({ description: '', title: '', category: 'other' })
     const user = JSON.parse(localStorage.getItem('profile'));
     const [disableSubmit, setDisableSubmit] = useState(false);
     const [open, setOpen] = useState(false);
@@ -34,6 +35,7 @@ const Editor = () => {
             const data = {
                 description: formData.description,
                 title: formData.title,
+                category: formData.category,
                 content: savedData
             }
             console.log(data)
@@ -58,7 +60,7 @@ const Editor = () => {
         <>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="success">
-                    Blog Created!
+                    Blog published sucessfully! Go back to home to see your latest blog!
                 </Alert>
             </Snackbar>
             <EditorJs
@@ -75,7 +77,13 @@ const Editor = () => {
                 <label>Short Description:</label>
                 <input required type="text" id="description" name="description" placeholder="Short Description" value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} />
                 <br></br>
-                {/* <button onClick={handleSave}>click</button> */}
+                <label>Category:</label>
+                <select name="category" id="category" required value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })}>
+                    {options.map((option) => (
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                    ))}
+                </select>
+                <br></br>
                 <input type="submit" value="Publish" disabled={disableSubmit} />
             </form>
         </>
