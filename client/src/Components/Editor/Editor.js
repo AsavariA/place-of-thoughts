@@ -33,7 +33,7 @@ const Editor = () => {
         if (savedData.blocks.length !== 0) {
             const data = {
                 description: formData.description,
-                tilte: formData.title,
+                title: formData.title,
                 content: savedData
             }
             console.log(data)
