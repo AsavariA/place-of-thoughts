@@ -138,6 +138,28 @@ select{
   justify-content: space-between;
 }
 
+.blogDetails{
+  padding: 2rem;
+}
+
+.blog-detail-image{
+  max-width: 650px;
+  width: 100%;
+  height: auto;
+}
+
+.codex-editor__redactor {
+  padding: 0px !important;
+}
+
+.comments-main{
+  background-color: rgb(224, 220, 220);
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 650px;
+  max-height: 90vh;
+}
+
 @media only screen and (max-width: 650px){
   .cardcontent{
     width: 100%
@@ -155,5 +177,9 @@ select{
   .image-div{
     width: 100%;
     display: block;
+  }
+
+  .blogDetails{
+    padding: 1rem;
   }
 }

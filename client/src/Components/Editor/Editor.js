@@ -57,7 +57,7 @@ const Editor = () => {
     }
 
     return (
-        <>
+        <div>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="success">
                     Blog published sucessfully! Go back to home to see your latest blog!
@@ -86,7 +86,7 @@ const Editor = () => {
                 <br></br>
                 <input type="submit" value="Publish" disabled={disableSubmit} />
             </form>
-        </>
+        </div>
     )
 }
 

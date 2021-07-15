@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardContent, Typography, CardActions, Button} from '@material-ui/core';
+import { Card, CardContent, Typography, CardActions, Button, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -32,7 +32,9 @@ const Blogcard = ({ blog, timeConverter }) => {
                             <Typography color="textSecondary" variant="subtitle2">
                                 {`Published on ${timeConverter(blog.createdAt)}`}
                             </Typography>
-                            <Button size="small">Learn More</Button>
+                            <Link href={`/${blog._id}`}>
+                                <Button size="small">Read</Button>
+                            </Link>
                         </CardActions>
                     </div>
                     <div className="image-div">

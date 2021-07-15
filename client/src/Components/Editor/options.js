@@ -9,6 +9,7 @@ import {
     socialservices,
     socialmedia,
     sports,
+    artanddesign,
     hobbies,
     business,
     technology,
@@ -58,6 +59,10 @@ export const options = [
     {
         label: "Sports",
         value: sports,
+    },
+    {
+        label: "Art and Design",
+        value: artanddesign,
     },
     {
         label: "Hobbies",

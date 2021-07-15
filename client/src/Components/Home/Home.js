@@ -1,28 +1,8 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
-import { getBlogs } from '../../actions/blogAction';
-import { useSelector } from 'react-redux';
+import React from 'react'
 import Blogcard from './Blogcard'
 
-const Home = () => {
+const Home = ({blogs, timeConverter}) => {
     // const user = JSON.parse(localStorage.getItem('profile'));
-    const dispatch = useDispatch();
-    const blogs = useSelector((state) => state.blogReducers);
-
-    function timeConverter(timestamp) {
-        var a = new Date(timestamp);
-        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        var month = months[a.getMonth()];
-        var date = a.getDate();
-        var year = a.getUTCFullYear();
-        var time = `${date} ${month}, ${year}`
-        return time;
-    }
-
-    useEffect(() => {
-        dispatch(getBlogs());
-    }, [dispatch])
-
     return (
         <div>
             {
