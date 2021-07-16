@@ -16,7 +16,7 @@ const Editor = () => {
     const instanceRef = useRef(null);
     const dispatch = useDispatch();
     // const edjsParser = editorjsHTML();
-    const [formData, setFormData] = useState({ description: '', title: '', category: 'other' })
+    const [formData, setFormData] = useState({ description: '', title: '', category: options[options.length - 1].value })
     const user = JSON.parse(localStorage.getItem('profile'));
     const [disableSubmit, setDisableSubmit] = useState(false);
     const [open, setOpen] = useState(false);

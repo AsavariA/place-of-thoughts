@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getBlogs } from './actions/blogAction';
@@ -12,6 +12,7 @@ import BlogDetails from './Components/BlogDetails/BlogDetails';
 function App() {
   const dispatch = useDispatch();
     const blogs = useSelector((state) => state.blogReducers);
+    const [currentId, setCurrentId] = useState(null);
 
     function timeConverter(timestamp) {
         var a = new Date(timestamp);
@@ -25,7 +26,7 @@ function App() {
 
     useEffect(() => {
         dispatch(getBlogs());
-    }, [dispatch])
+    }, [currentId, dispatch])
 
   return (
     <Router>
@@ -43,7 +44,7 @@ function App() {
           <Auth />
         </Route>
         <Route exact path="/:id">
-          <BlogDetails blogs={blogs} />
+          <BlogDetails blogs={blogs} currentId={currentId} setcurrentId={setCurrentId} />
         </Route>
       </Switch>
     </Router>

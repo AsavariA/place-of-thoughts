@@ -3,6 +3,7 @@ import Blogcard from './Blogcard'
 
 const Home = ({blogs, timeConverter}) => {
     // const user = JSON.parse(localStorage.getItem('profile'));
+
     return (
         <div>
             {
