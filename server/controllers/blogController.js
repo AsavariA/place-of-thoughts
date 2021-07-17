@@ -22,3 +22,14 @@ export const createBlog = async (req, res) => {
         console.log(error); 
     }
 }
+
+export const updateBlog = async (req, res) => {
+    const { id: _id } = req.params;
+    const blog = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No blog with that id found');
+
+    const updatedBlog = await BlogModel.findByIdAndUpdate(_id, blog, {new: true});
+
+    res.json(updatedBlog);
+}
