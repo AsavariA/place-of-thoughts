@@ -28,3 +28,13 @@ export const updateBlog = (id, blog) => async(dispatch) => {
         console.log(error.message);
     }
 }
+
+export const deleteBlog = (id, history) => async (dispatch) => {
+    try {
+        await api.deleteBlog(id)
+        dispatch({type: 'DELETE', payload:id})
+        history.push('/')
+    } catch (error) {
+        console.log(error)
+    }
+}

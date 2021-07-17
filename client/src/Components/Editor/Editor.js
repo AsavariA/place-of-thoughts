@@ -38,7 +38,6 @@ const Editor = () => {
                 category: formData.category,
                 content: savedData
             }
-            console.log(data)
             dispatch(createBlog({ ...data, ownerName: user?.result?.name }))
             setOpen(true)
             setDisableSubmit(true)

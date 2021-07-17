@@ -33,3 +33,13 @@ export const updateBlog = async (req, res) => {
 
     res.json(updatedBlog);
 }
+
+export const deleteBlog = async (req, res) => {
+    const {id: _id} = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No blog with that id found');
+
+    await BlogModel.findByIdAndRemove(_id); 
+
+    res.json({message: 'Blog Deleted Succesfully'})
+}

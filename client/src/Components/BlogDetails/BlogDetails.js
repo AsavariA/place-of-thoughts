@@ -8,8 +8,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import Comments from './Comments';
 import { options } from '../Editor/options'
 import { useDispatch } from 'react-redux';
-import { updateBlog } from '../../actions/blogAction';
+import { updateBlog, deleteBlog } from '../../actions/blogAction';
 import MuiAlert from '@material-ui/lab/Alert';
+import { useHistory } from 'react-router-dom';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -19,6 +20,7 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
     const instanceRef = useRef(null);
     const dispatch = useDispatch();
     const blogId = useParams();
+    const history = useHistory();
     const [showForm, setShowForm] = useState(false)
     const [readOnly, setReadOnly] = useState(true)
     const [openDialog, setOpenDialog] = useState(false);
@@ -26,13 +28,20 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
     const user = JSON.parse(localStorage.getItem('profile'));
     const [formData, setFormData] = useState({ description: '', title: '', category: options[options.length - 1].value })
 
-    const [open, setOpen] = useState(false);
-
-    const handleClose = (event, reason) => {
+    const [open1, setOpen1] = useState(false);
+    const handleClose1 = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-        setOpen(false);
+        setOpen1(false);
+    };
+
+    const [open2, setOpen2] = useState(false);
+    const handleClose2 = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen2(false);
     };
 
     const handleSave = async (e) => {
@@ -46,8 +55,7 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
                 content: savedData
             }
             dispatch(updateBlog(currentId, { ...data, ownerName: user?.result?.name }))
-            console.log(data)
-            setOpen(true)
+            setOpen1(true)
             setShowForm(false)
             setReadOnly(true)
         } else {
@@ -60,16 +68,27 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
         setFormData({ description: blog.description, title: blog.title, category: options[options.length - 1].value })
         setShowForm(true);
         setReadOnly(false);
-        console.log(currentId);
+    }
+
+    const handleDelete = () => {
+        dispatch(deleteBlog(blog._id, history))
+        setOpen2(true)
     }
 
     return (
         <>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success">
+            <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
+                <Alert onClose={handleClose1} severity="success">
                     Blog updated sucessfully!
                 </Alert>
             </Snackbar>
+
+            <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose2}>
+                <Alert onClose={handleClose2} severity="error">
+                    Blog deleted!
+                </Alert>
+            </Snackbar>
+
             <div className="blogDetails">
                 {
                     blog
@@ -161,7 +180,7 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
                     <Button onClick={() => setOpenDialog(false)} color="primary" autoFocus>
                         Cancel
                     </Button>
-                    <Button onClick={() => setOpenDialog(false)} color="primary">
+                    <Button onClick={handleDelete} color="primary">
                         Yes
                     </Button>
                 </DialogActions>
