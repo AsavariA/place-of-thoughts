@@ -161,7 +161,7 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
                             }
                             <Comments />
                         </div>
-                        : null
+                        : <div style={{height: '100vh'}}></div>
                 }
             </div>
             <Dialog

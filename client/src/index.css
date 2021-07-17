@@ -20,6 +20,16 @@ body{
   padding: 2rem 1rem;
 }
 
+footer{
+  margin-top: 2rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: white;
+  background-color: black;
+  line-height: 2rem;
+  font-size: 20px;
+}
+
 .main-heading{
   padding: 2rem 1rem 1rem 1rem;
   text-align: center;
@@ -216,6 +226,79 @@ select{
   display: flex;
 }
 
+.empty-profile1{
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  background-color: rgb(219, 249, 253);
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 60vh;
+}
+
+.empty-profile2{
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  background-color: rgb(252, 235, 252);
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 60vh;
+}
+
+.profile-grid{
+  display: flex;
+  width: 95%;
+  margin: auto;
+}
+
+.filled-profile1{
+  width: 50%;
+  background-color: rgb(219, 249, 253);
+  min-height: 60vh;
+}
+
+.filled-profile2{
+  width: 50%;
+  background-color: rgb(252, 235, 252);
+  min-height: 60vh;
+}
+
+.small-title{
+  font-size: 25px;
+  padding: 2rem 1rem 1rem 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+@media only screen and (max-width: 1200px){
+  .profile-grid{
+    display: block;
+    width: 95%;
+    margin: auto;
+  }
+  .filled-profile1{
+    width: 100%;
+    margin-bottom: 1rem;
+    min-height: 0vh;
+  }
+  
+  .filled-profile2{
+    width: 100%;
+    margin-top: 1rem;
+    min-height: 0vh;
+  }
+
+  .small-title{
+    font-size: 20px;
+  }
+}
+
 @media only screen and (max-width: 650px){
   .container{
     width: 100%;
@@ -258,5 +341,11 @@ select{
 
   .search-input{
     margin-bottom: 0.5rem;
+  }
+
+  footer{
+    margin-top: 2rem;
+    padding: 2rem;
+    font-size: 14px;
   }
 }
