@@ -1,6 +1,10 @@
 import React from 'react'
 import { Card, CardContent, Typography, CardActions, Button, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+import { useDispatch } from 'react-redux';
+import { saveBlog } from '../../actions/blogAction';
 
 const useStyles = makeStyles({
     root: {
@@ -11,6 +15,20 @@ const useStyles = makeStyles({
 
 const Blogcard = ({ blog, timeConverter }) => {
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem('profile'));
+    const dispatch = useDispatch();
+
+    const Saves = () => {
+        if (blog.saves.length > 0) {
+            return blog.saves.find((save) => save === (user?.result?._id))
+                ? (
+                    <><BookmarkIcon />{blog.saves.length}</>
+                ) : (
+                    <><BookmarkBorderIcon />{blog.saves.length}</>
+                );
+        }
+        return <><BookmarkBorderIcon />{blog.saves.length > 0 ? blog.saves.length : null}</>;
+    };
 
     return (
         <div>
@@ -32,9 +50,18 @@ const Blogcard = ({ blog, timeConverter }) => {
                             <Typography color="textSecondary" variant="subtitle2">
                                 {`Published on ${timeConverter(blog.createdAt)}`}
                             </Typography>
-                            <Link href={`/${blog._id}`}>
-                                <Button size="small">Read</Button>
-                            </Link>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <Link href={`/${blog._id}`}>
+                                    <Button size="small">Read</Button>
+                                </Link>
+                                {
+                                    user
+                                        ? <Button size="small" disabled={!user?.result} onClick={() => dispatch(saveBlog(blog._id))}>
+                                            <Saves />
+                                        </Button>
+                                        : null
+                                }
+                            </div>
                         </CardActions>
                     </div>
                     <div className="image-div">

@@ -64,7 +64,7 @@ const Auth = () => {
                     Passwords dont match!
                 </Alert>
             </Snackbar>
-            <div style={{ height: '80vh', display: 'flex', alignItems: 'center' }}>
+            <div style={{ height: '90vh', display: 'flex', alignItems: 'center' }}>
                 <Container component="main" maxWidth="xs">
                     <Paper className={classes.paper} elevation={3}>
                         <Avatar className={classes.avatar}>

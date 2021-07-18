@@ -4,12 +4,15 @@ import Blogcard from '../Home/Blogcard';
 const Profile = ({ blogs, timeConverter }) => {
     const user = JSON.parse(localStorage.getItem('profile'));
     const myblogs = blogs.filter(blog => blog.ownerName === user?.result?.name);
+    const savedblogs = blogs.filter(blog => blog.saves.includes(user?.result?._id));
 
     if (!user?.result?.name) {
         return (
-            <div className="editor-signup">
-                <h2>Sign up to view your profile!</h2>
-                <h4 className="auth-buttons"><a style={{ color: 'black' }} href="/auth">Sign Up</a></h4>
+            <div style={{ padding: '2rem 1rem' }}>
+                <div className="editor-signup">
+                    <h2>Sign up to view your profile!</h2>
+                    <h4 className="auth-buttons"><a style={{ color: 'black' }} href="/auth">Sign Up</a></h4>
+                </div>
             </div>
         );
     }
@@ -43,12 +46,12 @@ const Profile = ({ blogs, timeConverter }) => {
                 <div className="filled-profile2">
                     <h3 className="small-title">Saved blogs :</h3>
                     {
-                        myblogs.length > 0
+                        savedblogs.length > 0
                             // eslint-disable-next-line
-                            ? myblogs.map((myblog) => {
+                            ? savedblogs.map((savedblog) => {
                                 return (
-                                    <div key={myblog._id} style={{ padding: '1rem 1.5rem' }}>
-                                        <Blogcard blog={myblog} timeConverter={timeConverter} />
+                                    <div key={savedblog._id} style={{ padding: '1rem 1.5rem' }}>
+                                        <Blogcard blog={savedblog} timeConverter={timeConverter} />
                                     </div>
                                 )
                             }).reverse()

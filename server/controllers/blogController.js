@@ -43,3 +43,25 @@ export const deleteBlog = async (req, res) => {
 
     res.json({message: 'Blog Deleted Succesfully'})
 }
+
+export const saveBlog = async (req, res) => {
+    const { id } = req.params;
+
+    if (!req.userId) {
+        return res.json({ message: "Unauthenticated" });
+      }
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No blog with id: ${id}`);
+    
+    const blog = await BlogModel.findById(id);
+
+    const index = blog.saves.findIndex((id) => id ===String(req.userId));
+
+    if (index === -1) {
+      blog.saves.push(req.userId);
+    } else {
+      blog.saves = blog.saves.filter((id) => id !== String(req.userId));
+    }
+    const updatedBlog = await BlogModel.findByIdAndUpdate(id, blog, { new: true });
+    res.status(200).json(updatedBlog);
+}

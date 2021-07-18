@@ -13,6 +13,7 @@ export const fetchBlogs = () => API.get('/blogs');
 export const createBlog = (newBlog) => API.post('/blogs', newBlog)  
 export const updateBlog = (id, updatedBlog) => API.patch(`/blogs/${id}`, updatedBlog)
 export const deleteBlog = (id) => API.delete(`/blogs/${id}`)
+export const saveBlog = (id) => API.patch(`/blogs/${id}/saveBlog`)
 
 export const signIn = (formData) => API.post('users/signin', formData);
 export const signUp = (formData) => API.post('users/signup', formData);

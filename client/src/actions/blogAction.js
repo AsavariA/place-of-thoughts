@@ -38,3 +38,15 @@ export const deleteBlog = (id, history) => async (dispatch) => {
         console.log(error)
     }
 }
+
+export const saveBlog = (id) => async (dispatch) => {
+    const user = JSON.parse(localStorage.getItem('profile'));
+  
+    try {
+      const { data } = await api.saveBlog(id, user?.token);
+      dispatch({ type: 'SAVE', payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+    
+  };
