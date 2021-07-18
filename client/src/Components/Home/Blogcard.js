@@ -57,9 +57,11 @@ const Blogcard = ({ blog, timeConverter }) => {
                                     <Button size="small">Read</Button>
                                 </Link>
                                 <Tooltip title="Save">
-                                    <Button size="small" disabled={!user?.result} onClick={() => dispatch(saveBlog(blog._id))}>
-                                        <Saves />
-                                    </Button>
+                                    <span>
+                                        <Button size="small" disabled={!user?.result} onClick={() => dispatch(saveBlog(blog._id))}>
+                                            <Saves />
+                                        </Button>
+                                    </span>
                                 </Tooltip>
                             </div>
                         </CardActions>

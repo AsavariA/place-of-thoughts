@@ -30,6 +30,10 @@ footer{
   font-size: 20px;
 }
 
+footer::selection{
+  background-color: #371C5E;
+}
+
 .main-heading{
   padding: 2rem 1rem 1rem 1rem;
   text-align: center;
@@ -88,7 +92,7 @@ input:active{
 }
 
 .search-input{
-  background-color: rgb(233, 232, 232);
+  background-color: #E7DFF6;
   margin: auto;
   margin-bottom: 1rem;
   width: 100%;
@@ -154,6 +158,11 @@ select{
   padding: 16px 16px 0 16px !important;
 }
 
+.MuiOutlinedInput-adornedEnd {
+  padding-right: 14px;
+  background: white
+}
+
 .category-image{
   width: 13rem;
   height: 100%;
@@ -187,14 +196,6 @@ select{
 
 .codex-editor__redactor {
   padding: 0px !important;
-}
-
-.comments-main{
-  background-color: lightcyan;
-  margin: 2rem auto;
-  padding: 1rem;
-  max-width: 650px;
-  max-height: 90vh;
 }
 
 .container{
@@ -284,9 +285,19 @@ select{
   font-size: 16px;
 }
 
+.comments-main{
+  background-color: #D0C0ED;
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 650px;
+  max-height: 90vh;
+}
+
 .comments-inner{
   max-height: 40vh;
   overflow-y: scroll;
+  background-color: white;
+  padding: 1rem;
 }
 
 @media only screen and (max-width: 1200px){

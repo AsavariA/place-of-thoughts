@@ -24,19 +24,25 @@ const Comments = ({ blog }) => {
         <div className="comments-main">
             <Typography gutterBottom variant='h6'>Comments</Typography>
 
-            <div className="comments-inner">
-                {
-                    comments.map((comment, index) => {
-                        return (
-                            <Typography gutterBottom key={index} variant='subtitle1'>
-                                <b style={{fontWeight:'bold'}}>{comment.split(': ')[0]}</b>
-                                {comment.split(':')[1]}
-                            </Typography>
-                        )
-                    })
-                }
-                <div ref={commentsRef} />
-            </div>
+            {
+                comments.length > 0
+                    ? <div className="comments-inner">
+                        {
+                            comments.map((comment, index) => {
+                                return (
+                                    <Typography gutterBottom key={index} variant='subtitle1'>
+                                        <b style={{ fontWeight: 'bold' }}>{user ? (comment.split(': ')[0] === user.result.name ? 'You' : comment.split(': ')[0]) : comment.split(': ')[0]}</b>
+                                        {comment.split(':')[1]}
+                                    </Typography>
+                                )
+                            })
+                        }
+                        <div ref={commentsRef} />
+                    </div>
+                    : <Typography gutterBottom variant='subtitle1'>No comments on this post!</Typography>
+            }
+
+
             {user
                 ?
                 <div style={{ margin: '1rem 0' }}>

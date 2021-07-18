@@ -115,9 +115,11 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <h2 className="blogtitle">{blog.title}</h2>
                                         <Tooltip title="Save">
-                                            <Button size="small" disabled={!user?.result} onClick={() => dispatch(saveBlog(blog._id))}>
-                                                <Saves />
-                                            </Button>
+                                            <span>
+                                                <Button size="small" disabled={!user?.result} onClick={() => dispatch(saveBlog(blog._id))}>
+                                                    <Saves />
+                                                </Button>
+                                            </span>
                                         </Tooltip>
                                     </div>
                                     <p className="blogdescription">{blog.description}</p>
