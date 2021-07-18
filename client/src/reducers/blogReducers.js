@@ -7,6 +7,12 @@ export default (blogs = [], action) => {
             return blogs.map((blog) => blog._id === action.payload._id ? action.payload : blog)
         case 'SAVE':
             return blogs.map((blog) => (blog._id === action.payload._id ? action.payload : blog));
+        case 'COMMENT': return blogs.map((blog) => {
+            if (blog._id === action.payload._id) {
+                return action.payload;
+            }
+            return blog;
+        });
         case 'FETCH_ALL':
             return action.payload;
         case 'CREATE':

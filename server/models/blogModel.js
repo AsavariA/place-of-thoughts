@@ -7,6 +7,7 @@ const blogSchema = mongoose.Schema({
     description: String,
     content: Map,
     saves: { type: [String], default: [] },
+    comments: { type: [String], default: [] },
     createdAt: {
         type: Date,
         default: new Date(),

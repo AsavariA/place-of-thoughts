@@ -65,3 +65,15 @@ export const saveBlog = async (req, res) => {
     const updatedBlog = await BlogModel.findByIdAndUpdate(id, blog, { new: true });
     res.status(200).json(updatedBlog);
 }
+
+export const commentBlog = async (req, res) => {
+    const { id } = req.params;
+    const { value } = req.body;
+
+    const blog = await BlogModel.findById(id);
+
+    blog.comments.push(value);
+
+    const updatedBlog = await BlogModel.findByIdAndUpdate(id, blog, { new: true });
+    res.status(200).json(updatedBlog);
+}

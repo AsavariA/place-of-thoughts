@@ -190,7 +190,7 @@ select{
 }
 
 .comments-main{
-  background-color: rgb(224, 220, 220);
+  background-color: lightcyan;
   margin: 2rem auto;
   padding: 1rem;
   max-width: 650px;
@@ -282,6 +282,11 @@ select{
 
 .blogdescription{
   font-size: 16px;
+}
+
+.comments-inner{
+  max-height: 40vh;
+  overflow-y: scroll;
 }
 
 @media only screen and (max-width: 1200px){

@@ -180,7 +180,7 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
                                     </form>
                                     : null
                             }
-                            <Comments />
+                            <Comments blog={blog} />
                         </div>
                         : <div style={{ height: '100vh' }}></div>
                 }
