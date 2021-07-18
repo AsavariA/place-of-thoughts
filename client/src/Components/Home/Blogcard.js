@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardContent, Typography, CardActions, Button, Link } from '@material-ui/core';
+import { Tooltip, Card, CardContent, Typography, CardActions, Button, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
@@ -36,9 +36,11 @@ const Blogcard = ({ blog, timeConverter }) => {
                 <div className="cardmain">
                     <div className="cardcontent">
                         <CardContent>
-                            <Typography variant="h5" component="h2">
-                                {blog.title}
-                            </Typography>
+                            <Link href={`/${blog._id}`} underline='none'>
+                                <Typography variant="h5" component="h2" color="secondary">
+                                    {blog.title}
+                                </Typography>
+                            </Link>
                             <Typography gutterBottom>
                                 {blog.description}
                             </Typography>
@@ -51,16 +53,14 @@ const Blogcard = ({ blog, timeConverter }) => {
                                 {`Published on ${timeConverter(blog.createdAt)}`}
                             </Typography>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <Link href={`/${blog._id}`}>
+                                <Link href={`/${blog._id}`} underline='none'>
                                     <Button size="small">Read</Button>
                                 </Link>
-                                {
-                                    user
-                                        ? <Button size="small" disabled={!user?.result} onClick={() => dispatch(saveBlog(blog._id))}>
-                                            <Saves />
-                                        </Button>
-                                        : null
-                                }
+                                <Tooltip title="Save">
+                                    <Button size="small" disabled={!user?.result} onClick={() => dispatch(saveBlog(blog._id))}>
+                                        <Saves />
+                                    </Button>
+                                </Tooltip>
                             </div>
                         </CardActions>
                     </div>

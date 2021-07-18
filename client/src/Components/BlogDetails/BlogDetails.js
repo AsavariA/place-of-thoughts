@@ -8,9 +8,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import Comments from './Comments';
 import { options } from '../Editor/options'
 import { useDispatch } from 'react-redux';
-import { updateBlog, deleteBlog } from '../../actions/blogAction';
+import { updateBlog, deleteBlog, saveBlog } from '../../actions/blogAction';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router-dom';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -75,6 +77,18 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
         setOpen2(true)
     }
 
+    const Saves = () => {
+        if (blog.saves.length > 0) {
+            return blog.saves.find((save) => save === (user?.result?._id))
+                ? (
+                    <><BookmarkIcon />{blog.saves.length}</>
+                ) : (
+                    <><BookmarkBorderIcon />{blog.saves.length}</>
+                );
+        }
+        return <><BookmarkBorderIcon />{blog.saves.length > 0 ? blog.saves.length : null}</>;
+    };
+
     return (
         <>
             <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
@@ -98,8 +112,15 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
                         </div> */}
                             <div className="container" style={{ backgroundImage: `url(${blog.category})` }}>
                                 <div className="modal">
-                                    <h2>{blog.title}</h2>
-                                    <p>{blog.description}</p>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <h2 className="blogtitle">{blog.title}</h2>
+                                        <Tooltip title="Save">
+                                            <Button size="small" disabled={!user?.result} onClick={() => dispatch(saveBlog(blog._id))}>
+                                                <Saves />
+                                            </Button>
+                                        </Tooltip>
+                                    </div>
+                                    <p className="blogdescription">{blog.description}</p>
                                 </div>
                             </div>
                             <EditorJs
@@ -161,7 +182,7 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
                             }
                             <Comments />
                         </div>
-                        : <div style={{height: '100vh'}}></div>
+                        : <div style={{ height: '100vh' }}></div>
                 }
             </div>
             <Dialog

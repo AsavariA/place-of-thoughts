@@ -232,7 +232,7 @@ select{
   align-items: center;
   justify-content: center;
   color: #666;
-  background-color: rgb(219, 249, 253);
+  background-color: #fafafa;
   width: 100%;
   box-sizing: border-box;
   min-height: 60vh;
@@ -244,7 +244,7 @@ select{
   align-items: center;
   justify-content: center;
   color: #666;
-  background-color: rgb(252, 235, 252);
+  background-color: #fafafa;
   width: 100%;
   box-sizing: border-box;
   min-height: 60vh;
@@ -258,13 +258,13 @@ select{
 
 .filled-profile1{
   width: 50%;
-  background-color: rgb(219, 249, 253);
+  background-color: #fafafa;
   min-height: 60vh;
 }
 
 .filled-profile2{
   width: 50%;
-  background-color: rgb(252, 235, 252);
+  background-color: #fafafa;
   min-height: 60vh;
 }
 
@@ -274,6 +274,14 @@ select{
   text-align: center;
   text-transform: uppercase;
   font-style: italic;
+}
+
+.blogtitle{
+  font-size: 25px;
+}
+
+.blogdescription{
+  font-size: 16px;
 }
 
 @media only screen and (max-width: 1200px){
@@ -296,6 +304,14 @@ select{
 
   .small-title{
     font-size: 20px;
+  }
+
+  .blogtitle{
+    font-size: 20px;
+  }
+
+  .blogdescription{
+    font-size: 15px;
   }
 }
 
@@ -347,5 +363,13 @@ select{
     margin-top: 2rem;
     padding: 2rem;
     font-size: 14px;
+  }
+
+  .blogtitle{
+    font-size: 18px;
+  }
+
+  .blogdescription{
+    font-size: 13px;
   }
 }
