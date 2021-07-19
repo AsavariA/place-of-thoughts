@@ -45,7 +45,7 @@ const Blogcard = ({ blog, timeConverter }) => {
                                 {blog.description}
                             </Typography>
                             <Typography color="textSecondary" variant="subtitle1" gutterBottom>
-                                {`By ${blog.ownerName}`}
+                                {`By ${user ? (blog.ownerName === user.result.name ? 'You' : blog.ownerName) : blog.ownerName}`}
                             </Typography>
                         </CardContent>
                         <CardActions>

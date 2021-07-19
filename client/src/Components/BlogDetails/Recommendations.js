@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Card, CardActionArea, CardActions, CardContent, CardMedia, Button } from '@material-ui/core'
+import { Typography, Link, Card, CardActionArea, CardActions, CardContent, CardMedia, Button } from '@material-ui/core'
 
 const useStyles = makeStyles({
     root: {
@@ -16,13 +16,13 @@ const Recommendations = ({ blogs }) => {
 
     return (
         <div className="recmain">
-            <h3 style={{textAlign: 'center', margin: '1rem 0'}}>YOU MIGHT ALSO LIKE - </h3>
+            <h3 style={{ textAlign: 'center', margin: '1rem 0' }}>YOU MIGHT ALSO LIKE - </h3>
             <div className='recs'>
                 {
-                    blogs
+                    blogs.length > 0
                         ? blogs.slice(0, 3).map((blog) => {
                             return (
-                                <div key={blog._id}>
+                                <div key={blog._id} style={{ margin: '1rem' }}>
                                     <Card className={classes.root}>
                                         <CardActionArea>
                                             <CardMedia
@@ -31,28 +31,28 @@ const Recommendations = ({ blogs }) => {
                                                 title="Category"
                                             />
                                             <CardContent>
-                                                <Typography gutterBottom variant="h5" component="h2">
-                                                    Lizard
+                                                <Typography gutterBottom variant="h6">
+                                                    {blog.title}
                                                 </Typography>
                                                 <Typography variant="body2" color="textSecondary" component="p">
-                                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                                    across all continents except Antarctica
+                                                    {blog.description}
                                                 </Typography>
                                             </CardContent>
                                         </CardActionArea>
                                         <CardActions>
-                                            <Button size="small" color="primary">
-                                                Share
-                                            </Button>
-                                            <Button size="small" color="primary">
-                                                Learn More
-                                            </Button>
+                                            <Link href={`/${blog._id}`} underline='none'>
+                                                <Button size="small" color="primary">
+                                                    Read
+                                                </Button>
+                                            </Link>
                                         </CardActions>
                                     </Card>
                                 </div>
                             )
-                        })
-                        : null
+                        }).reverse()
+                        : <div style={{ padding: '1rem' }}>
+                            <i><h4 style={{ textAlign: 'center', color: 'grey' }}>Looks like there aren't many blogs in this category :( </h4></i>
+                        </div>
                 }
             </div>
 

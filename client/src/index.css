@@ -309,8 +309,9 @@ select{
 
 .recmain{
   padding: 2rem;
-  background-color: bisque;
-  margin-top: 1rem;
+  background-color: #F0F8FF;
+  margin: 1rem auto;
+  max-width: 1000px;
 }
 
 @media only screen and (max-width: 1200px){

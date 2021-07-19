@@ -39,7 +39,7 @@ const Comments = ({ blog }) => {
                         }
                         <div ref={commentsRef} />
                     </div>
-                    : <Typography gutterBottom variant='subtitle1'>No comments on this post!</Typography>
+                    : <i><h4 style={{ color: 'grey' }}>No comments on this post! </h4></i>
             }
 
 

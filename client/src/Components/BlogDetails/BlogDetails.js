@@ -28,7 +28,7 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
     const [readOnly, setReadOnly] = useState(true)
     const [openDialog, setOpenDialog] = useState(false);
     const blog = blogs.find(x => x._id === blogId.id);
-    // const recommendedBlogs = blogs.filter(recblog => );
+    const recommendedBlogs = blogs.filter(y => y._id !== blogId.id && y.category === blog.category);
     const user = JSON.parse(localStorage.getItem('profile'));
     const [formData, setFormData] = useState({ description: '', title: '', category: options[options.length - 1].value })
 
@@ -182,7 +182,7 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
                                     : null
                             }
                             <Comments blog={blog} />
-                            <Recommendations blogs={blogs} />
+                            <Recommendations blogs={recommendedBlogs} />
                         </div>
                         : <div style={{ height: '100vh' }}></div>
                 }

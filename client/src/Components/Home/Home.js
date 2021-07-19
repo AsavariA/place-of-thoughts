@@ -11,7 +11,7 @@ const Home = ({ blogs, timeConverter }) => {
     return (
         <div>
             <div className="main-heading">
-                <h2>Place of Thoughts &#127968;</h2>
+                <h2>Place of Thoughts &#127855;</h2>
             </div>
             <div style={{ margin: 'auto', display: 'flex', padding: '0 1.5rem' }}>
                 {
