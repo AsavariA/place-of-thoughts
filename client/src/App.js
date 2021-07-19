@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getBlogs } from './actions/blogAction';
 import { useSelector } from 'react-redux';
@@ -17,6 +17,7 @@ function App() {
   const dispatch = useDispatch();
   const blogs = useSelector((state) => state.blogReducers);
   const [currentId, setCurrentId] = useState(null);
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   function timeConverter(timestamp) {
     var a = new Date(timestamp);
@@ -61,7 +62,9 @@ function App() {
             </div>
           </Route>
           <Route exact path="/auth">
-            <Auth />
+            {
+              !user ? <Auth /> : <Redirect to="/" />
+            }
           </Route>
           <Route exact path="/profile">
             <Profile blogs={blogs} timeConverter={timeConverter} />
