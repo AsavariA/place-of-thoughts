@@ -300,6 +300,19 @@ select{
   padding: 1rem;
 }
 
+.recs{
+  display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+    grid-gap: 2rem;
+    place-items: center;
+}
+
+.recmain{
+  padding: 2rem;
+  background-color: bisque;
+  margin-top: 1rem;
+}
+
 @media only screen and (max-width: 1200px){
   .profile-grid{
     display: block;
@@ -387,5 +400,9 @@ select{
 
   .blogdescription{
     font-size: 13px;
+  }
+
+  .recmain{
+    padding: 2rem 0rem;
   }
 }

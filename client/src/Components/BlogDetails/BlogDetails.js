@@ -6,6 +6,7 @@ import { Tooltip, Button, Snackbar, Dialog, DialogActions, DialogContent, Dialog
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Comments from './Comments';
+import Recommendations from './Recommendations';
 import { options } from '../Editor/options'
 import { useDispatch } from 'react-redux';
 import { updateBlog, deleteBlog, saveBlog } from '../../actions/blogAction';
@@ -27,6 +28,7 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
     const [readOnly, setReadOnly] = useState(true)
     const [openDialog, setOpenDialog] = useState(false);
     const blog = blogs.find(x => x._id === blogId.id);
+    // const recommendedBlogs = blogs.filter(recblog => );
     const user = JSON.parse(localStorage.getItem('profile'));
     const [formData, setFormData] = useState({ description: '', title: '', category: options[options.length - 1].value })
 
@@ -67,7 +69,7 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
 
     const handleClickEdit = () => {
         setcurrentId(blog._id);
-        setFormData({ description: blog.description, title: blog.title, category: options[options.length - 1].value })
+        setFormData({ description: blog.description, title: blog.title, category: blog.category })
         setShowForm(true);
         setReadOnly(false);
     }
@@ -107,9 +109,6 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
                 {
                     blog
                         ? <div className="blogDetailsMain">
-                            {/* <div style={{ margin: 'auto', width: 'fit-content' }}>
-                            <img className="blog-detail-image" src={blog.category} alt="blogimage"></img>
-                        </div> */}
                             <div className="container" style={{ backgroundImage: `url(${blog.category})` }}>
                                 <div className="modal">
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -183,6 +182,7 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
                                     : null
                             }
                             <Comments blog={blog} />
+                            <Recommendations blogs={blogs} />
                         </div>
                         : <div style={{ height: '100vh' }}></div>
                 }
