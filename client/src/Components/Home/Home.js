@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Blogcard from './Blogcard'
 import { Button } from '@material-ui/core';
 import { options } from '../Editor/options';
+import { ClipLoader } from "react-spinners";
 
 const Home = ({ blogs, timeConverter }) => {
     // const user = JSON.parse(localStorage.getItem('profile'));
@@ -26,7 +27,7 @@ const Home = ({ blogs, timeConverter }) => {
                 }
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button color='primary' size="small" variant="outlined" onClick={() => {setShowTagSearch(!showTagSearch); setSearchTerm('')}}>{`Search by ${!showTagSearch ? 'tags' : 'title/author'}`}</Button>
+                <Button color='primary' size="small" variant="outlined" onClick={() => { setShowTagSearch(!showTagSearch); setSearchTerm('') }}>{`Search by ${!showTagSearch ? 'tags' : 'title/author'}`}</Button>
             </div>
             <div style={{ minHeight: '100vh' }}>
                 {
@@ -45,7 +46,14 @@ const Home = ({ blogs, timeConverter }) => {
                                 </div>
                             )
                         }).reverse()
-                        : <div style={{ height: '100vh' }}></div>
+                        : <div style={{ height: '100vh', display: 'flex', justifyContent: 'center' }}>
+                            <div style={{padding: '4rem 2rem', textAlign: 'center'}}>
+                                <ClipLoader
+                                    color={"#E7DFF6"}
+                                />
+                                <h4 style={{color: '#e7dff6', margin: '1rem 0'}}>Loading Blogs. . .</h4>
+                            </div>
+                        </div>
                 }
             </div>
         </div>

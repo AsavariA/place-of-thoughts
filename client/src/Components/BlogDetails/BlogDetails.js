@@ -14,6 +14,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router-dom';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
+import { ClipLoader } from "react-spinners";
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -184,7 +185,14 @@ const BlogDetails = ({ blogs, currentId, setcurrentId }) => {
                             <Comments blog={blog} />
                             <Recommendations blogs={recommendedBlogs} />
                         </div>
-                        : <div style={{ height: '100vh' }}></div>
+                        : <div style={{ height: '100vh', display: 'flex', justifyContent: 'center' }}>
+                            <div style={{ padding: '4rem 2rem', textAlign: 'center' }}>
+                                <ClipLoader
+                                    color={"#E7DFF6"}
+                                />
+                                <h4 style={{ color: '#e7dff6', margin: '1rem 0' }}>Just one moment. . .</h4>
+                            </div>
+                        </div>
                 }
             </div>
             <Dialog
