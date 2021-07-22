@@ -31,7 +31,7 @@ const Home = ({ blogs, timeConverter }) => {
             </div>
             <div style={{ minHeight: '100vh' }}>
                 {
-                    blogs
+                    blogs.length > 0
                         // eslint-disable-next-line
                         ? blogs.filter((blog) => {
                             if (searchTerm === '') {
