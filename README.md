@@ -1,4 +1,4 @@
- # The Bizness Project
+ # Place of Thoughts
 
 ## Overview
 Blogging website. With an interface similar to Medium, this web app provides a platform for users to publish their own creative pieces. They can edit them on a later date or even unpublish it according to their wish. Users can also browse through all available blogs, read them and search them via title/authors name or category. Users can save blogs to their profile to read later. To increase user interaction, commenting on blogs and recommendations based category of the currently reading blog is also available!
