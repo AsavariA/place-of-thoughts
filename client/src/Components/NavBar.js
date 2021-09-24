@@ -44,6 +44,7 @@ const NavBar = () => {
                     ? <button className="auth-buttons" style={{border: 'none', cursor: 'pointer'}} onClick={logout}>LOGOUT</button>
                     : <h4 className="auth-buttons"><a style={{ color: 'black' }} href="/auth">Sign In</a></h4>   
                 }
+                <h4 className="star-button"><a style={{ color: 'white' }} href="https://github.com/AsavariA/place-of-thoughts">Github</a></h4>
                 
             </Navbar>
         </div>

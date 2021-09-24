@@ -32,8 +32,8 @@ const Home = ({ blogs, timeConverter }) => {
             <div style={{ margin: 'auto', display: 'flex', padding: '0 1.5rem' }}>
                 {
                     !showTagSearch
-                        ? <input className="search-input" type="text" id="search" name="search" placeholder="Search by title or author . . ." onChange={(e) => { setSearchTerm(e.target.value) }} />
-                        : <select className="search-input" name="category" id="category" defaultValue='' required onChange={(e) => setSearchTerm(e.target.value)}>
+                        ? <input className="search-input" type="text" id="search" name="search" placeholder="Search by title or author . . ." onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }} />
+                        : <select className="search-input" name="category" id="category" defaultValue='' required onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}>
                             <option disabled value='' hidden>Search by tags. . .</option>
                             {options.map((option) => (
                                 <option key={option.value} value={option.value}>{option.label}</option>
@@ -42,7 +42,7 @@ const Home = ({ blogs, timeConverter }) => {
                 }
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button color='primary' size="small" variant="outlined" onClick={() => { setShowTagSearch(!showTagSearch); setSearchTerm('') }}>{`Search by ${!showTagSearch ? 'tags' : 'title/author'}`}</Button>
+                <Button color='primary' size="small" variant="outlined" onClick={() => { setShowTagSearch(!showTagSearch); setSearchTerm(''); setCurrentPage(1); }}>{`Search by ${!showTagSearch ? 'tags' : 'title/author'}`}</Button>
             </div>
             <div style={{ minHeight: '100vh' }}>
                 {

@@ -136,6 +136,13 @@ select{
   border-radius: 10px;
 }
 
+.star-button{
+  margin: 1.5rem 0;
+  padding: 0.5rem 1rem;
+  background-color: lightcoral;
+  border-radius: 10px;
+}
+
 .editor-signup{
   height:80vh;
   display: flex; 
