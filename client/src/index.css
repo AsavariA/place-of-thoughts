@@ -178,6 +178,10 @@ select{
   padding: 16px 16px 0 16px !important;
 }
 
+.MuiPagination-ul {
+  justify-content: center;
+}
+
 .MuiOutlinedInput-adornedEnd {
   padding-right: 14px;
   background: white

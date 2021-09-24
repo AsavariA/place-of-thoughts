@@ -3,11 +3,26 @@ import Blogcard from './Blogcard'
 import { Button } from '@material-ui/core';
 import { options } from '../Editor/options';
 import { ClipLoader } from "react-spinners";
+import Pagination from '@material-ui/lab/Pagination';
 
 const Home = ({ blogs, timeConverter }) => {
     // const user = JSON.parse(localStorage.getItem('profile'));
     const [searchTerm, setSearchTerm] = useState('');
     const [showTagSearch, setShowTagSearch] = useState(false);
+
+    const blogList = blogs.filter(blog => (blog.title.toLowerCase().includes(searchTerm.toLowerCase()) || blog.ownerName.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === blog.category)).reverse();
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [dataPerPage] = useState(3);
+
+    // get current blog
+    const indexOfLastBlog = currentPage * dataPerPage;
+    const indexOfFirstBlog = indexOfLastBlog - dataPerPage;
+    const currentData = blogList.slice(indexOfFirstBlog, indexOfLastBlog);
+
+    const handleChange = (event, value) => {
+        setCurrentPage(value);
+    };
 
     return (
         <div>
@@ -31,30 +46,27 @@ const Home = ({ blogs, timeConverter }) => {
             </div>
             <div style={{ minHeight: '100vh' }}>
                 {
-                    blogs.length > 0
+                    currentData.length > 0
                         // eslint-disable-next-line
-                        ? blogs.filter((blog) => {
-                            if (searchTerm === '') {
-                                return blog
-                            } else if (blog.title.toLowerCase().includes(searchTerm.toLowerCase()) || blog.ownerName.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === blog.category) {
-                                return blog
-                            }
-                        }).map((blog) => {
+                        ? currentData.map((blog) => {
                             return (
                                 <div key={blog._id} style={{ padding: '1rem 1.5rem' }}>
                                     <Blogcard blog={blog} timeConverter={timeConverter} />
                                 </div>
                             )
-                        }).reverse()
+                        })
                         : <div style={{ height: '100vh', display: 'flex', justifyContent: 'center' }}>
-                            <div style={{padding: '4rem 2rem', textAlign: 'center'}}>
+                            <div style={{ padding: '4rem 2rem', textAlign: 'center' }}>
                                 <ClipLoader
                                     color={"#E7DFF6"}
                                 />
-                                <h4 style={{color: '#e7dff6', margin: '1rem 0'}}>Loading Blogs. . .</h4>
+                                <h4 style={{ color: '#e7dff6', margin: '1rem 0' }}>Loading Blogs. . .</h4>
                             </div>
                         </div>
                 }
+                <div style={{ margin: '2rem 0' }}>
+                    <Pagination count={Math.ceil(blogList.length / dataPerPage)} color="primary" page={currentPage} onChange={handleChange} />
+                </div>
             </div>
         </div>
     )
